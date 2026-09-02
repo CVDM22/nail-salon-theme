@@ -1,0 +1,1 @@
+/Volumes/CVDM_Ext/Shopify themes/nail-salon-theme/AGENTS.md
