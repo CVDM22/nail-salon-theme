@@ -15,6 +15,15 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- comment -%}
+      Candy-shop template fonts. To reskin: change the family names in this
+      Google Fonts URL, then update the matching --font-*-family values in
+      the "Candy-shop font overrides" style block further down this file.
+    {%- endcomment -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Style+Script&family=Monsieur+La+Doulaise&display=swap">
+
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
@@ -275,6 +284,49 @@
         body {
           font-size: 1.6rem;
         }
+      }
+    {% endstyle %}
+
+    {% comment %}
+      Candy-shop font overrides.
+      These win over the Theme settings > Typography font pickers above,
+      because Shopify's font picker library doesn't carry these three
+      Google Fonts, so they're loaded directly (see the <link> tag near
+      the top of <head>) and applied here instead.
+
+      - Body font: everything functional — paragraphs, prices, forms, nav,
+        buttons — stays in a clean, legible rounded sans (Quicksand) on
+        purpose. A cursive script across prices and form fields is genuinely
+        hard to read and costs bookings, so this one stays put even in a
+        "candy shop" reskin.
+      - Heading font: Style Script, applied to every H1-H6 site-wide via
+        Dawn's normal heading role (product titles, section titles, etc.).
+      - Accent font: Monsieur La Doulaise, NOT wired into headings — it's
+        far too ornate to stay legible past a word or two. Use the
+        `.font-script-accent` class by hand on one-off flourish moments
+        (a hero signature line, a logotype) instead.
+
+      To reskin this template for a different salon: swap the three family
+      names below (and in the <link> above) for whatever fonts fit — no
+      other file needs to change.
+    {% endcomment %}
+    {% style %}
+      :root {
+        --font-body-family: 'Quicksand', sans-serif;
+        --font-body-style: normal;
+        --font-body-weight: 400;
+        --font-body-weight-bold: 700;
+
+        --font-heading-family: 'Style Script', cursive;
+        --font-heading-style: normal;
+        --font-heading-weight: 400;
+
+        --font-accent-family: 'Monsieur La Doulaise', cursive;
+      }
+
+      .font-script-accent {
+        font-family: var(--font-accent-family);
+        font-weight: 400;
       }
     {% endstyle %}
 
