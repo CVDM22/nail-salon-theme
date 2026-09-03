@@ -328,6 +328,23 @@
         font-family: var(--font-accent-family);
         font-weight: 400;
       }
+
+      /* Shop name wordmark in the header: needs to win over the plain
+         .h2 heading rule in base.css, and a connected script needs its
+         letter-spacing zeroed out and a bit more size than a normal h2
+         to read as a signature rather than a section title. */
+      .h2.font-script-accent {
+        font-family: var(--font-accent-family);
+        font-weight: 400;
+        letter-spacing: normal;
+        font-size: calc(var(--font-heading-scale) * 2.6rem);
+      }
+
+      @media only screen and (min-width: 750px) {
+        .h2.font-script-accent {
+          font-size: calc(var(--font-heading-scale) * 3.6rem);
+        }
+      }
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
