@@ -1,9 +1,17 @@
 name: CI
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 jobs:
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
+    # Disabled on every push: this job needs 5 live-store secrets
+    # (SHOP_STORE_OS2, SHOP_PASSWORD_OS2, SHOP_ACCESS_TOKEN,
+    # LHCI_GITHUB_TOKEN, SHOP_PULL_THEME) that aren't configured for this
+    # project. Left in place so it can still be run on demand from the
+    # Actions tab ("Run workflow") once those secrets are set up.
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Lighthouse
